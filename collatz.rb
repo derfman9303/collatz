@@ -4,6 +4,7 @@ class Collatz
     @cache = {}
   end
 
+# sequence method simply completes each collatz sequence from 1 to 1000000.
   def sequence(n)
     if n == 1
       return @length
@@ -16,6 +17,7 @@ class Collatz
     sequence(n)
   end
 
+# sequence_cache will save the collatz sequence length of numbers into a hash, reducing execution time.
   def sequence_cache(n)
     if n == 1
       return @length
@@ -36,6 +38,7 @@ class Collatz
     longest_sequence_length = @length
     1000000.times do
       @length = 0
+      # to execute using the simple sequence method, change the following line to call sequencce method.
       sequence_cache(@iteration)
       if longest_sequence_length < @length
         longest_sequence_length = @length
@@ -46,18 +49,10 @@ class Collatz
       @iteration = @iteration + 1
     end
     puts "From 1 to " + (@iteration - 1).to_s
-    return "largest sequence was " + (longest_sequence_length).to_s + " steps long, starting with " + @longest.to_s + "."
+    return "longest sequence was " + (longest_sequence_length).to_s + " steps long, starting with " + @longest.to_s + "."
   end
 end
 
 collatz = Collatz.new
 
-#puts collatz.sequence(7)
-
-#puts collatz.sequence_cache(1819)
-#puts collatz.sequence_cache(33)
-
 puts collatz.test
-#puts collatz.test
-
-#puts collatz.test_method
